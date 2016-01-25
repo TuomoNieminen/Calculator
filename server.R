@@ -3,12 +3,6 @@ library(shiny)
 # Define server logic for random distribution application
 shinyServer(function(input, output) {
   
-  
-  output$q0 <- renderUI({
-    value <- min(input$q,0)
-    numericInput("q0","q0 point",value=value)
-  })
-  
   # parameters from user
   mean <- reactive({
     if(!is.na(input$mean)) input$mean else 0
@@ -17,7 +11,7 @@ shinyServer(function(input, output) {
     if(!is.na(input$sd)) input$sd else 1
   })
   df1 <- reactive({
-    if(!is.na(input$df1)) input$df1 else 10
+    if(!is.na(input$df1)) input$df1 else 3
   })
   df2 <- reactive({
     if(!is.na(input$df2)) input$df2 else 2
@@ -82,7 +76,7 @@ shinyServer(function(input, output) {
                 reverse_cum = 1-p(),
                 range = p()-p0())
     paste("<p id = 'prob_output'>The probability corresponding to your current selection is <b>",
-          round(p,5),"</b></p>")
+          round(abs(p),5),"</b></p>")
   })
   
   # density plot

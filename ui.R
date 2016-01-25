@@ -47,7 +47,7 @@ shinyUI(fluidPage(
            br(),br(),
            
            conditionalPanel(condition="input.ptype=='range'",
-                            uiOutput("q0")),
+                            numericInput("q0","q0 point",value=0)),
            numericInput("q","q point", value=1),
            br(),
            htmlOutput("prob")
