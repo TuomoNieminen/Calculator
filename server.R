@@ -14,8 +14,8 @@ shinyServer(function(input, output) {
     switch(input$dist,
            "normal" = seq(-4*sd()+mean(),4*sd()+mean(),length=200),
            "t" = seq(-4,4,length=200),
-           "F" = seq(0,9,length=200),
-           "chi-squared" = seq(0,3*df1(),length=200))
+           "F" = seq(0.001,9,length=200),
+           "chi-squared" = seq(0.001,3*df1(),length=200))
   })
   
   # probability density values for plotting
@@ -81,7 +81,7 @@ shinyServer(function(input, output) {
     # probability area 
     polygon(c( min(hx()), hx(), max(hx()) ),
             c( 0, fx()(hx()) , 0 ), 
-            col = "grey")
+            col = "grey92")
   })
   
   
