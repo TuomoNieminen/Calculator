@@ -47,20 +47,20 @@ shinyUI(fluidPage(
            div(style="padding:15px; background-color:#F6F0FF; border-radius:10px;",
                               
                radioButtons("ptype","probability",
-                            c("P(X =< q)"="cum",
-                              "P(X > q)"="reverse_cum",
-                              "P(q0 < X =< q)"="range")),
+                            c("P(X =< x)"="cum",
+                              "P(X > x)"="reverse_cum",
+                              "P(x0 < X =< x)"="range")),
                br(),br(),              
                conditionalPanel(condition="input.ptype=='range'",
-                                numericInput("q0","q0 point",value=0)),
-               numericInput("q","q point", value=1),
+                                numericInput("x0","select the x0 point",value=0)),
+               numericInput("x","select the x point", value=1),
                br(),
                htmlOutput("prob")
            )),
     
     # plot output
     column(6,
-           plotOutput("plot"),
+           plotOutput("plot", click="plot_click"),
            
            fluidRow(column(2),
                     column(10,

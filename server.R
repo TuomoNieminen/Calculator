@@ -1,7 +1,7 @@
 library(shiny)
 
 # Define server logic for random distribution application
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   
   # parameters from user 
   mean <- reactive({if(!is.na(input$mean)) input$mean else 0})
@@ -28,19 +28,47 @@ shinyServer(function(input, output) {
              "chi-squared" = dchisq(x, df1()))
     }
   })
- 
+  
+  # get probability region info from user
+  Q <- reactiveValues(x=1, x0=0)
+  
+  # some helper functions
+  updateNum <- function(id,x) {
+    updateNumericInput(session=session, inputId=id, label = NULL, value=x)
+  }
+  which_closer <- function(x) {
+    ifelse((x-input$x)**2 < (x - input$x0)**2, "x","x0")
+  }
+  
+  # Update Q values using both numeric input and user clicking the plot
+  observe({
+    click <- input$plot_click$x
+    if(!is.null(click)) {
+      if(input$ptype=="range") {
+        updateNum(which_closer(click),click)
+        if(input$x < input$x0) updateNum("x0",input$x)
+      } else {
+        updateNum("x",click)
+      }
+    }
+    
+    Q$x <- input$x
+    Q$x0 <- input$x0
+    
+  })
+  
   # x values for highlighted probability regions
-    hx <- reactive({      
+  hx <- reactive({      
     switch(input$ptype,
-           cum = x()[x() <= input$q],
-           reverse_cum = x()[x() > input$q],
-           range = x()[x() <= input$q & x() > input$q0]
+           cum = x()[x() <= Q$x],
+           reverse_cum = x()[x() > Q$x],
+           range = x()[x() > Q$x0 & x() <= Q$x]
     )
   })
   
   #probabilities  
   p <- reactive({
-    q <- input$q
+    q <- Q$x
     switch(input$dist,
            "normal" = pnorm(q, mean(), sd()),
            "t" = pt(q, df1()),
@@ -48,7 +76,7 @@ shinyServer(function(input, output) {
            "chi-squared"=pchisq(q, df1()))
   }) 
   p0 <- reactive({
-    q <- input$q0
+    q <- Q$x0
     switch(input$dist,
            "normal" = pnorm(q, mean(), sd()),
            "t" = pt(q, df1()),
@@ -56,8 +84,8 @@ shinyServer(function(input, output) {
            "chi-squared"=pchisq(q, df1()))
   })
   
-
-# outputs
+  
+  # outputs
   
   # calculated probability
   output$prob <- renderText({   
