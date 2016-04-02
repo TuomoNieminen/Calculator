@@ -7,5 +7,10 @@ It also includes the possibility to explore the distributions graphically.
 
 The app can be run from R:
 
-`if(!require(shiny)){install.packages("shiny") };library(shiny)`
-`runGitHub("Calculator","TuomoNieminen")`
+```
+if(!require(shiny)){
+  install.packages("shiny")
+  library(shiny)
+}
+runGitHub("Calculator","TuomoNieminen")
+```
