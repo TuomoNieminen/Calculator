@@ -167,7 +167,7 @@ shinyServer(function(input, output, session) {
     x <- x()
     probability <- fx()(x)
     chosen <- x %in% hx()
-    colors = c("grey90","grey50")[chosen+1]
+    colors = c("grey90","grey60")[chosen+1]
     plot(x, probability, xaxt="n",
          type= "h", lwd=3, ylim=c(0,input$discrete_ylim), col=colors,
          main=paste("The point probabilities of the",input$discrete_dist, "distribution"))
