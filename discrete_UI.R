@@ -45,6 +45,7 @@ fluidRow(
   
   # plot output
   column(6,
+         p(align="center","Click on the plot to define probabilities"),
          plotOutput("discrete_plot", click="discrete_click"),
          
          fluidRow(column(2),
