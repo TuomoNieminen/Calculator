@@ -77,13 +77,18 @@ shinyServer(function(input, output, session) {
         updateNum("x", click, type)
       }
     }
+    x <- input[[paste0("x",type)]]
+    x0 <- input[[paste0("x0",type)]]
     
-    if(input[[paste0("x",type)]] < input[[paste0("x0",type)]]) {
-      updateNum("x0", input[[paste0("x",type)]] - 0.5, type)
+    x <- ifelse(is.na(x), 0, x) 
+    x0 <- ifelse(is.na(x0), min(Q$x,0), x0)
+    
+    if(x < x0) {
+      updateNum("x0", x - 0.5, type)
     }
     
-    Q$x <- input[[paste0("x",type)]]
-    Q$x0 <- input[[paste0("x0",type)]]
+    Q$x <- x
+    Q$x0 <- x0
     
   })
   
@@ -95,7 +100,7 @@ shinyServer(function(input, output, session) {
     switch(type,
            cum = x()[x() <= Q$x],
            reverse_cum = x()[x() > Q$x],
-           range = x()[x() >= Q$x0 & x() <= Q$x]
+           range = x()[x() > Q$x0 & x() <= Q$x]
     )
   })
   
