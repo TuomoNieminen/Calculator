@@ -40,7 +40,7 @@ fluidRow(
              radioButtons("continuous_ptype","probability",
                           c("P(X =< x)"="cum",
                             "P(X > x)"="reverse_cum",
-                            "P(x0 =< X =< x)"="range")),
+                            "P(x0 < X =< x)"="range")),
              br(),             
              conditionalPanel(condition="input.continuous_ptype=='range'",
                               numericInput("x0continuous","select the x0 point",

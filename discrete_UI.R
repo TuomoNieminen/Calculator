@@ -35,7 +35,7 @@ fluidRow(
              radioButtons("discrete_ptype","probability",
                           c("P(X =< x)"="cum",
                             "P(X > x)"="reverse_cum",
-                            "P(x0 =< X =< x)"="range")),
+                            "P(x0 < X =< x)"="range")),
              br(),             
              conditionalPanel(condition="input.discrete_ptype=='range'",
                               numericInput("x0discrete","select the x0 point",
@@ -51,7 +51,7 @@ fluidRow(
          fluidRow(column(2),
                   column(10,
                          sliderInput("discrete_ylim","Adjust the y axis",
-                                     min = 0, max=1,value=0.6,
+                                     min = 0, max=1, value=0.6,
                                      ticks=F, step=0.02)
                   ))
   )
