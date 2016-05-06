@@ -33,19 +33,25 @@ fluidRow(
          )),
   
   # probability choice and output
+
   
-  column(3, br(),
+column(3, br(),
          div(style="padding:15px; background-color:#F6F0FF; border-radius:10px;",
-             htmlOutput("continuous_prob"),               
-             radioButtons("continuous_ptype","probability",
-                          c("P(X =< x)"="cum",
+
+             radioButtons("continuous_ptype","choose one",
+                          c("P(X <= x)"="cum",
                             "P(X > x)"="reverse_cum",
-                            "P(x0 < X =< x)"="range")),
-             br(),             
+                            "P(x0 < X <= x)"="range")
+                          ),
+             br(),
+             
+             p("Adjust either to compute the other:"),
+             
+             numericInput("pcontinuous","current probability",value=NA,step=0.01,min=0,max=1),
              conditionalPanel(condition="input.continuous_ptype=='range'",
-                              numericInput("x0continuous","select the x0 point",
+                              numericInput("x0continuous","current x0 point (lower)",
                                            value=0, step=0.1)),
-             numericInput("xcontinuous","select the x point", 
+             numericInput("xcontinuous","current x point", 
                           value=1, step=0.1)
          )),
   

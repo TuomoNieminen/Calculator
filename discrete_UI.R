@@ -31,16 +31,19 @@ fluidRow(
   
   column(3, br(),
          div(style="padding:15px; background-color:#F6F0FF; border-radius:10px;",
-             htmlOutput("discrete_prob"),               
-             radioButtons("discrete_ptype","probability",
+             radioButtons("discrete_ptype","choose one",
                           c("P(X =< x)"="cum",
                             "P(X > x)"="reverse_cum",
                             "P(x0 < X =< x)"="range")),
-             br(),             
+             br(),
+             
+             p("Adjust either to compute the other:"),
+             
+             numericInput("pdiscrete","current probability",value=NA,step=0.01,min=0,max=1),
              conditionalPanel(condition="input.discrete_ptype=='range'",
-                              numericInput("x0discrete","select the x0 point",
+                              numericInput("x0discrete","current x0 point (lower)",
                                            value=0)),
-             numericInput("xdiscrete","select the x point", value=5)
+             numericInput("xdiscrete","current x point", value=5)
          )),
   
   # plot output
