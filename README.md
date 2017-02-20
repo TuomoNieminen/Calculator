@@ -1,14 +1,13 @@
+# Welcome to the Calculator repository  
+
 ![](https://github.com/TuomoNieminen/Calculator/blob/master/app.PNG)
 
 
-
-# Welcome to the Calculator repository
+# About  
 
 This simple interactive app allows the user to calculate probabilities or quantiles from well known probability distributions. A unique aspect is a possibility to explore the distributions graphically and define the desired probabilities by interacting with the graphics.
 
-# About
-
- R is a programming language for data analysis. Shiny is an R library for creating interactive web applications. This repository includes the codes for an R Shiny implementation of a statistics probability calculator.
+R is a programming language for data analysis. Shiny is an R library for creating interactive web applications. This repository includes the codes for an R Shiny implementation of a statistics probability calculator.
 
 # Usage
 
