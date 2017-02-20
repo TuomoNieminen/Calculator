@@ -1,4 +1,6 @@
-![](app.png)
+![](https://github.com/TuomoNieminen/Calculator/blob/master/app.PNG)
+
+
 
 # Welcome to the Calculator repository
 
