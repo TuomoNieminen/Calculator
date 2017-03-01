@@ -8,7 +8,7 @@ shinyUI(fluidPage(
   fluidRow(
            column(11,
               h2("Probability calculator", align="center",style="color: #7BB0BC;")),
-           column(1, tags$a(img(id ="github", src = 'github.PNG'), 
+           column(1, tags$a(img(id ="github", src = 'github.png'), 
                             href = "https://github.com/TuomoNieminen/Calculator"))),
   
   tabsetPanel(id="dist_type",
