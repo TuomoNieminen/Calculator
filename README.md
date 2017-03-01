@@ -1,5 +1,5 @@
 
-![](https://github.com/TuomoNieminen/Calculator/blob/master/app.PNG)
+![](https://github.com/TuomoNieminen/Calculator/blob/master/www/app.PNG)
 
 
 # About  
